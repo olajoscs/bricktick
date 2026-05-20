@@ -52,6 +52,10 @@ services:
   frontend:
     image: node:20-alpine
     container_name: bricktick-frontend
+    environment:
+      VITE_API_PROXY_TARGET: http://nginx:80
+      # Used by the browser (host machine), not the container loopback
+      VITE_API_BASE_URL: http://localhost:8080
     working_dir: /app
     command: >
       sh -lc "if [ -f package.json ];

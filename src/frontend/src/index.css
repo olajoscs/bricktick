@@ -50,6 +50,18 @@
   }
 }
 
+.route-guard-status {
+  display: flex;
+  flex-grow: 1;
+  align-items: center;
+  justify-content: center;
+  padding: 48px 32px;
+}
+
+.route-guard-status p {
+  margin: 0;
+}
+
 #root {
   width: 1126px;
   max-width: 100%;

@@ -44,4 +44,31 @@ class AuthController extends Controller
             'expires_in' => $ttlMinutes * 60,
         ]);
     }
+
+    /**
+     * Confirm the caller may access guest-only routes (e.g. login).
+     */
+    public function guestSession(): JsonResponse
+    {
+        return response()->json([
+            'guest' => true,
+        ]);
+    }
+
+    /**
+     * Return the authenticated user for session checks.
+     */
+    public function me(Request $request): JsonResponse
+    {
+        /** @var User $user */
+        $user = $request->user();
+
+        return response()->json([
+            'authenticated' => true,
+            'user' => [
+                'name' => $user->name,
+                'email' => $user->email,
+            ],
+        ]);
+    }
 }

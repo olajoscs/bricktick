@@ -1,5 +1,32 @@
 # React + TypeScript + Vite
 
+## API base URL
+
+The SPA calls Laravel using `VITE_API_BASE_URL` (see `.env.example`). For local split dev (Vite on port 5173, API on 8080), use `http://localhost:8080`. The backend must allow your frontend origin in `CORS_ALLOWED_ORIGINS` (see `src/backend/.env.example`).
+
+## Restart dev server (Docker)
+
+From the host, restart the frontend container (re-runs `npm install` and `npm run dev`):
+
+```powershell
+# Windows — from any directory
+pwsh -File D:\Projects\Hobby\bricktick\scripts\restart-frontend.ps1
+
+# Or double-click / run:
+D:\Projects\Hobby\bricktick\scripts\restart-frontend.cmd
+```
+
+```sh
+# macOS / Linux / Git Bash
+sh /path/to/bricktick/scripts/restart-frontend.sh
+```
+
+One-liner without the script (container name is fixed in docker-compose):
+
+```sh
+docker restart bricktick-frontend
+```
+
 This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
 
 Currently, two official plugins are available:
