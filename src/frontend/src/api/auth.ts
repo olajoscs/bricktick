@@ -53,12 +53,10 @@ export type AuthMeResponse = {
   }
 }
 
-export function fetchGuestSession(
-  init?: RequestInit,
-): Promise<GuestSessionResponse> {
-  return apiFetch<GuestSessionResponse>('/api/auth/session', init)
+export function fetchGuestSession(): Promise<GuestSessionResponse> {
+  return apiFetch<GuestSessionResponse>('/api/auth/session')
 }
 
-export function fetchAuthMe(init?: RequestInit): Promise<AuthMeResponse> {
-  return apiFetch<AuthMeResponse>('/api/auth/me', init)
+export function fetchAuthMe(): Promise<AuthMeResponse> {
+  return apiFetch<AuthMeResponse>('/api/auth/me')
 }

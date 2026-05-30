@@ -1,6 +1,5 @@
 import { useEffect, useState } from 'react'
 import { useNavigate } from 'react-router-dom'
-import { isAbortError } from '../api/abortError'
 import { fetchDashboard, type DashboardResponse } from '../api/dashboard'
 import { handleAuthError } from '../auth/handleAuthError'
 import './DashboardPage.css'
@@ -12,7 +11,6 @@ export default function DashboardPage() {
   const [error, setError] = useState<string | null>(null)
 
   useEffect(() => {
-    const controller = new AbortController()
     let cancelled = false
 
     async function load() {
@@ -20,12 +18,12 @@ export default function DashboardPage() {
       setError(null)
 
       try {
-        const dashboard = await fetchDashboard({ signal: controller.signal })
+        const dashboard = await fetchDashboard()
         if (!cancelled) {
           setData(dashboard)
         }
       } catch (err) {
-        if (cancelled || isAbortError(err)) {
+        if (cancelled) {
           return
         }
 
@@ -51,7 +49,6 @@ export default function DashboardPage() {
 
     return () => {
       cancelled = true
-      controller.abort()
     }
   }, [navigate])
 

@@ -1,6 +1,5 @@
 import { useEffect, useState } from 'react'
 import { Navigate, Outlet, useNavigate } from 'react-router-dom'
-import { isAbortError } from '../api/abortError'
 import { fetchAuthMe } from '../api/auth'
 import { handleAuthError } from '../auth/handleAuthError'
 import { isLoggedIn } from '../auth/session'
@@ -15,17 +14,16 @@ export default function ProtectedRoute() {
       return
     }
 
-    const controller = new AbortController()
     let cancelled = false
 
     async function verify() {
       try {
-        await fetchAuthMe({ signal: controller.signal })
+        await fetchAuthMe()
         if (!cancelled) {
           setAllowed(true)
         }
       } catch (error) {
-        if (cancelled || isAbortError(error)) {
+        if (cancelled) {
           return
         }
 
@@ -47,7 +45,6 @@ export default function ProtectedRoute() {
 
     return () => {
       cancelled = true
-      controller.abort()
     }
   }, [navigate])
 

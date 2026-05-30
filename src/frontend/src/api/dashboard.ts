@@ -12,8 +12,6 @@ export type DashboardResponse = {
   }
 }
 
-export function fetchDashboard(
-  init?: RequestInit,
-): Promise<DashboardResponse> {
-  return apiFetch<DashboardResponse>('/api/dashboard', init)
+export function fetchDashboard(): Promise<DashboardResponse> {
+  return apiFetch<DashboardResponse>('/api/dashboard')
 }
