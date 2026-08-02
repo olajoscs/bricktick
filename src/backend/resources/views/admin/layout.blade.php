@@ -55,6 +55,16 @@
         }
         textarea { min-height: 120px; resize: vertical; }
         .field { margin-bottom: 16px; }
+        .field--checkbox label {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            font-weight: 400;
+            cursor: pointer;
+        }
+        .field--checkbox input[type="checkbox"] {
+            width: auto;
+        }
         .btn {
             display: inline-block;
             font: inherit;
@@ -117,6 +127,7 @@
                 <h1>Bricktick Admin</h1>
                 <nav>
                     <a href="{{ route('admin.projects.index') }}">Projects</a>
+                    <a href="{{ route('admin.users.index') }}">Users</a>
                     <form action="{{ route('admin.logout') }}" method="post" style="display:inline">
                         @csrf
                         <button type="submit" class="btn btn--secondary" style="padding:6px 12px;font-size:14px">Log out</button>
