@@ -50,4 +50,11 @@ class UserFactory extends Factory
             'is_active' => false,
         ]);
     }
+
+    public function admin(): static
+    {
+        return $this->state(fn (array $attributes) => [
+            'has_admin' => true,
+        ]);
+    }
 }

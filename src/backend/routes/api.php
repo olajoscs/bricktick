@@ -4,7 +4,7 @@ use App\Http\Controllers\Api\AuthController;
 use App\Http\Controllers\Api\DashboardController;
 use Illuminate\Support\Facades\Route;
 
-Route::middleware('guest')->group(function () {
+Route::middleware('api.guest')->group(function () {
     Route::post('/login', [AuthController::class, 'login']);
     Route::get('/auth/session', [AuthController::class, 'guestSession']);
 });
