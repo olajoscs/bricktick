@@ -10,8 +10,8 @@
     <div class="panel">
         <h2>User details</h2>
         <p class="meta">
-            Created {{ $user->created_at->format('Y-m-d H:i') }}
-            · Updated {{ $user->updated_at->format('Y-m-d H:i') }}
+            Created {{ $user->created_at->format('Y-m-d H:i') }}<br>
+            Updated {{ $user->updated_at->format('Y-m-d H:i') }}
         </p>
 
         <form method="post" action="{{ route('admin.users.update') }}">
@@ -67,6 +67,25 @@
                 @error('is_active')
                     <p class="meta" style="color: var(--danger)">{{ $message }}</p>
                 @enderror
+                
+                <label for="has_admin">
+                    <input
+                        type="checkbox"
+                        id="has_admin"
+                        name="has_admin"
+                        value="1"
+                        @checked(old('has_admin', $user->has_admin))
+                        @disabled($user->id === auth()->id())
+                    >
+                    Admin
+                </label>                
+                @if ($user->id === auth()->id())
+                    <p class="meta">Your own account must stay an admin.</p>
+                @endif
+                @error('has_admin')
+                    <p class="meta" style="color: var(--danger)">{{ $message }}</p>
+                @enderror
+
             </div>
             <div class="actions">
                 <button type="submit" class="btn">Save changes</button>

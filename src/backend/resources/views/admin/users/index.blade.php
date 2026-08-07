@@ -46,6 +46,15 @@
                         <p class="meta" style="color: var(--danger)">{{ $message }}</p>
                     @enderror
                 </div>
+                <div class="field field--checkbox">
+                    <label for="has_admin">
+                        <input type="checkbox" id="has_admin" name="has_admin" value="1" @checked(old('has_admin', false))>
+                        Admin
+                    </label>
+                    @error('has_admin')
+                        <p class="meta" style="color: var(--danger)">{{ $message }}</p>
+                    @enderror
+                </div>
                 <button type="submit" class="btn">Create user</button>
             </form>
         </details>

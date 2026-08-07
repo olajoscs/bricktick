@@ -30,6 +30,7 @@ class UserController extends Controller
             'password' => ['required', 'string', 'min:8'],
             'title' => ['nullable', 'string', 'max:255'],
             'is_active' => ['nullable', 'boolean'],
+            'has_admin' => ['nullable', 'boolean'],
         ]);
 
         User::query()->create([
@@ -38,7 +39,7 @@ class UserController extends Controller
             'title' => $validated['title'] ?? null,
             'password' => $validated['password'],
             'is_active' => $request->boolean('is_active'),
-            'has_admin' => false,
+            'has_admin' => $request->boolean('has_admin'),
         ]);
 
         return redirect()
@@ -74,6 +75,7 @@ class UserController extends Controller
             'password' => ['nullable', 'string', 'min:8'],
             'title' => ['nullable', 'string', 'max:255'],
             'is_active' => ['nullable', 'boolean'],
+            'has_admin' => ['nullable', 'boolean'],
         ]);
 
         $user = User::query()->findOrFail($validated['id']);
@@ -89,6 +91,7 @@ class UserController extends Controller
             'email' => $validated['email'],
             'title' => $validated['title'] ?? null,
             'is_active' => $request->boolean('is_active'),
+            'has_admin' => $request->boolean('has_admin'),
         ];
 
         if (! empty($validated['password'])) {

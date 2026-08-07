@@ -10,8 +10,8 @@
     <div class="panel">
         <h2>Project details</h2>
         <p class="meta">
-            Created {{ $project->created_at->format('Y-m-d H:i') }}
-            · Updated {{ $project->updated_at->format('Y-m-d H:i') }}
+            Created {{ $project->created_at->format('Y-m-d H:i') }}<br>
+            Updated {{ $project->updated_at->format('Y-m-d H:i') }}
         </p>
 
         <form method="post" action="{{ route('admin.projects.update') }}">
